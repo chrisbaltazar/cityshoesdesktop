@@ -1,4 +1,5 @@
-@import 'datatables.net-bm/css/dataTables.bulma.min.css';
+@import 'bulma/css/bulma.css';
+@import 'datatables.net-bm';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
