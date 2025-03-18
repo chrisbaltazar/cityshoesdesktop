@@ -41,4 +41,12 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function default(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'email' => 'test@foo.com',
+            'password' => Hash::make('123'),
+        ]);
+    }
 }

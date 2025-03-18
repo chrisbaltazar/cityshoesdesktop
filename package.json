@@ -18,6 +18,9 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
-        "bootstrap": "^5.3.3"
+        "bootstrap": "^5.3.3",
+        "datatables.net": "^2.2.2",
+        "datatables.net-bm": "^2.2.2",
+        "datatables.net-vue3": "^3.0.4"
     }
 }
