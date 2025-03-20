@@ -21,6 +21,7 @@
         "bootstrap": "^5.3.3",
         "datatables.net": "^2.2.2",
         "datatables.net-bs5": "^2.2.2",
-        "datatables.net-vue3": "^3.0.4"
+        "datatables.net-vue3": "^3.0.4",
+        "font-awesome": "^4.7.0"
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SalesController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,10 @@ Route::middleware(Authenticate::class)->group(function () {
 
     Route::controller(InventoryController::class)->group(function(){
        Route::get('/inventory', 'index')->name('inventory');
+    });
+
+    Route::controller(SalesController::class)->group(function(){
+        Route::get('/sales', 'index')->name('sales');
     });
 });
 

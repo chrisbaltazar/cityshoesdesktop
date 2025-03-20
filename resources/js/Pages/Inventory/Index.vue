@@ -17,9 +17,7 @@ const columns = [
     <Head title="Inventory"/>
 
     <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800">Inventario general</h2>
-        </template>
+        <template #header>Inventario</template>
 
         <div class="p-6 text-gray-900">
             <DataTable
