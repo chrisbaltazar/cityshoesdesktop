@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use App\Models\ValueObjects\Sizes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +22,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
-            'size' => $this->faker->randomElement(['12-14', '15-17', '18-21', '2-6', '5-9', '9-12']),
+            'size' => $this->faker->randomElement(Sizes::cases()),
             'price' => $this->faker->randomFloat(0, 99, 500),
         ];
     }

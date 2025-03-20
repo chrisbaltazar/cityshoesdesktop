@@ -3,6 +3,10 @@ import {Head} from '@inertiajs/vue3';
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {ref, computed} from "vue";
 
+defineProps([
+    'sizes',
+])
+
 const columns = [
     {data: 'product'},
     {data: 'size'},
@@ -20,6 +24,22 @@ const details = ref([]);
 const hasDetails = computed(() => {
     return details.value.length > 0;
 });
+
+const addDetail = () => {
+    if (info.value.product && info.value.size && info.value.price) {
+        const detailRow = {...info.value}
+        delete detailRow.salesman;
+        details.value.push(detailRow);
+        clear();
+    }
+}
+
+const clear = (reset = false) => {
+    info.value = {}
+    if (reset) {
+        details.value = [];
+    }
+}
 
 </script>
 
@@ -45,18 +65,20 @@ const hasDetails = computed(() => {
                 </div>
                 <div class="col">
                     <div class="form-floating">
-                        <input type="text" class="form-control" v-model="info.size" id="cmbSize" placeholder="Talla">
+                        <select class="form-control" v-model="info.size" id="cmbSize">
+                            <option v-for="size in sizes" :value="size" :key="size">{{ size }}</option>
+                        </select>
                         <label for="cmbSize">Talla</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-floating">
-                        <input type="text" class="form-control" v-model="info.price" id="txtPrice" placeholder="Precio">
+                        <input type="number" step="1" class="form-control" v-model="info.price" id="txtPrice" placeholder="Precio">
                         <label for="txtPrice">Precio</label>
                     </div>
                 </div>
                 <div class="col max-w-[50px]">
-                    <button type="button" class="btn btn-primary btn-lg mt-1" id="btnAdd">
+                    <button type="button" class="btn btn-primary btn-lg mt-1" id="btnAdd" @click="addDetail">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
@@ -70,6 +92,7 @@ const hasDetails = computed(() => {
                     <th>Producto</th>
                     <th>Talla</th>
                     <th>Precio</th>
+                    <th>Borrar</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -77,9 +100,14 @@ const hasDetails = computed(() => {
                     <td>{{ detail.product }}</td>
                     <td>{{ detail.size }}</td>
                     <td>{{ detail.price }}</td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-danger" @click="details.splice(index, 1)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
                 </tr>
                 <tr v-if="!hasDetails">
-                    <td colspan="3" class="text-center">Venta vacia</td>
+                    <td colspan="4" class="text-center">Venta vacia</td>
                 </tr>
                 </tbody>
             </table>
@@ -87,7 +115,7 @@ const hasDetails = computed(() => {
 
         <div class="container mt-5 w-1/2 text-center" id="saleActions">
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-danger my-1 mx-1">Cancelar</button>
+                <button type="button" class="btn btn-danger my-1 mx-1" @click="clear(true)">Cancelar</button>
                 <button type="button" :disabled="!hasDetails" class="btn btn-info my-1 mx-1">Tarjeta</button>
                 <button type="button" :disabled="!hasDetails" class="btn btn-success my-1 mx-1">Venta Simple</button>
                 <button type="button" :disabled="!hasDetails" class="btn btn-warning my-1 mx-1">Venta Fiscal</button>
