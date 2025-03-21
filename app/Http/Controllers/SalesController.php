@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaleRequest;
-use App\Models\ValueObjects\Sizes;
-use Illuminate\Http\Request;
+use App\Models\Enums\Sizes;
+use App\Services\SalesManagerService;
 
 class SalesController extends Controller
 {
@@ -14,10 +14,16 @@ class SalesController extends Controller
         return inertia('Sales/Index', ['sizes' => Sizes::cases()]);
     }
 
-    public function store(SaleRequest $request)
+    public function store(SaleRequest $request, SalesManagerService $salesManager)
     {
-
-
+        try{
+            $salesManager->create($request->validated());
+        }catch (\Throwable){
+            return back()->with([
+                'message' => 'Error al registrar la venta',
+                'type' => 'error'
+            ]);
+        }
 
         return back()->with([
             'message' => 'Venta registrada',

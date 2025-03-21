@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Product;
-use App\Models\ValueObjects\Sizes;
+use App\Models\Enums\Sizes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

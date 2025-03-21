@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\ValueObjects\SaleTypes;
+use App\Models\Enums\SaleTypes;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +25,7 @@ class SaleRequest extends FormRequest
     {
         return [
             'salesman' => 'required|string|max:255',
-            'type' => 'required|string|max:255|in:' . implode(',', SaleTypes::cases()),
+            'type' => 'required|string|in:' . implode(',', SaleTypes::values()),
             'details' => 'required|array',
         ];
     }
