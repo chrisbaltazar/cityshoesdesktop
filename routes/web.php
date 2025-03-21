@@ -28,11 +28,12 @@ Route::middleware(Authenticate::class)->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::controller(InventoryController::class)->group(function(){
-       Route::get('/inventory', 'index')->name('inventory');
+       Route::get('/inventory', 'index')->name('inventory.index');
     });
 
     Route::controller(SalesController::class)->group(function(){
-        Route::get('/sales', 'index')->name('sales');
+        Route::get('/sales', 'index')->name('sales.index');
+        Route::post('/sales', 'store')->name('sales.store');
     });
 });
 
