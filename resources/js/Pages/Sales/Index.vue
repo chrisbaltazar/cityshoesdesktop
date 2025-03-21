@@ -136,12 +136,18 @@ const submit = (type) => {
 
         <div class="container mt-5 w-1/2 text-center" id="saleActions">
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-danger my-1 mx-1" @click="clear(true)">Cancelar</button>
-                <button type="button" :disabled="!hasDetails" class="btn btn-info my-1 mx-1">Tarjeta</button>
+                <button type="button" class="btn btn-danger my-1 mx-1"
+                        @click="clear(true)">Cancelar
+                </button>
+                <button type="button" :disabled="!hasDetails" class="btn btn-info my-1 mx-1"
+                        @click="submit('card')">Tarjeta
+                </button>
                 <button type="button" :disabled="!hasDetails" class="btn btn-success my-1 mx-1"
                         @click="submit('simple')">Venta Simple
                 </button>
-                <button type="button" :disabled="!hasDetails" class="btn btn-warning my-1 mx-1">Venta Fiscal</button>
+                <button type="button" :disabled="!hasDetails" class="btn btn-warning my-1 mx-1"
+                        @click="submit('fiscal')">Venta Fiscal
+                </button>
             </div>
         </div>
     </AuthenticatedLayout>
