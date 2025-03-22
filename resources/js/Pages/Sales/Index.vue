@@ -27,6 +27,10 @@ const hasDetails = computed(() => {
     return details.value.length > 0;
 });
 
+const total = computed(() => {
+    return 'Total $' + details.value.map(row => row.price).reduce((a, b) => a + b, 0);
+});
+
 const addDetail = () => {
     if (data.value.product && data.value.size && data.value.price) {
         details.value.push({...data.value});
@@ -132,11 +136,14 @@ const submit = (type) => {
                 </tr>
                 </tbody>
             </table>
+            <div class="text-right">
+                <span class="badge text-bg-light fs-5" v-text="total"></span>
+            </div>
         </div>
 
         <div class="container mt-5 w-1/2 text-center" id="saleActions">
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-danger my-1 mx-1"
+                <button type="button" class="btn btn-secondary my-1 mx-1"
                         @click="clear(true)">Cancelar
                 </button>
                 <button type="button" :disabled="!hasDetails" class="btn btn-info my-1 mx-1"

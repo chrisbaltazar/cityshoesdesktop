@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SaleRequest;
 use App\Models\Enums\Sizes;
 use App\Services\SalesManagerService;
+use Inertia\Inertia;
 
 class SalesController extends Controller
 {
 
     public function index()
     {
-        return inertia('Sales/Index', ['sizes' => Sizes::cases()]);
+        return Inertia::render('Sales/Index', ['sizes' => Sizes::cases()]);
     }
 
     public function store(SaleRequest $request, SalesManagerService $salesManager)
