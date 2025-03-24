@@ -18,14 +18,15 @@ class SalesController extends Controller
     public function store(SaleRequest $request, SalesManagerService $salesManager)
     {
         try {
-            $salesManager->create($request->validated());
+            $sale = $salesManager->create($request->validated());
+            dd($sale);
         } catch (\Throwable $t) {
             $message = 'Error al registrar la venta: ' . $t->getMessage();
             $type = 'error';
         }
 
         return back()->with([
-            'message' => $message ?? 'Venta registrada',
+            'message' => $message ?? 'Venta guardada',
             'type' => $type ?? 'success'
         ]);
     }
