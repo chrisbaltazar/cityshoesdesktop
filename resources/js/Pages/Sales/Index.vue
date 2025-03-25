@@ -27,16 +27,14 @@ const bannerMessage = computed(() => {
     if(form.recentlySuccessful) {
         return 'Venta guardada...';
     }
-    if(error.value) {
-        return error.value;
-    }
-    return null;
+
+    return form?.errors[0]
 })
 const bannerClass = computed(() => {
     if (form.recentlySuccessful) {
         return 'alert alert-success';
     }
-    if (error.value) {
+    if (form?.errors[0]) {
         return 'alert alert-danger';
     }
     return '';
@@ -67,7 +65,8 @@ const clear = (reset = false) => {
 }
 
 const submit = (type) => {
-    error.value = null
+    form.clearErrors();
+
     form.transform(() => {
         return {
             type: type,
@@ -80,7 +79,8 @@ const submit = (type) => {
         },
         onError: (err) => {
             console.log(err);
-            error.value = 'Error: ' + err[0]
+            // error.value = 'Error: ' + err[0]
+            // form.setError('message', err[0])
         }
     })
 }
