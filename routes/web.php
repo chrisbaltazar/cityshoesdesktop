@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SalesController;
 use App\Http\Middleware\Authenticate;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -34,6 +34,11 @@ Route::middleware(Authenticate::class)->group(function () {
     Route::controller(SalesController::class)->group(function(){
         Route::get('/sales', 'index')->name('sales.index');
         Route::post('/sales', 'store')->name('sales.store');
+    });
+
+    Route::controller(ReportController::class)->group(function(){
+        Route::get('/report', 'index')->name('report.index');
+        Route::get('/report/{id}', 'show')->name('report.show');
     });
 });
 

@@ -87,10 +87,10 @@ const submit = (type) => {
 </script>
 
 <template>
-    <Head title="Ventas"/>
+    <Head title="Venta"/>
 
     <AuthenticatedLayout>
-        <template #header>Ventas</template>
+        <template #header>Venta</template>
 
         <div class="container mt-5" id="saleInfo">
             <div :class="bannerClass" v-if="bannerMessage">
