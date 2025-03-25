@@ -46,6 +46,9 @@ const clear = (reset = false) => {
     }
 }
 
+const error = ref(null)
+const message = ref(null)
+
 const submit = (type) => {
     const form = useForm({
         type: type,
@@ -54,11 +57,13 @@ const submit = (type) => {
     });
 
     form.post(route('sales.store'), {
-        onSuccess: () => {
-            clear(true);
+        onSuccess: (msg) => {
+            clear(true)
+            message.value = msg;
         },
-        onError: () => {
-            console.log('Error');
+        onError: (err) => {
+            console.log(err);
+            error.value = 'Error: ' + err[0];
         }
     });
 }
@@ -72,6 +77,13 @@ const submit = (type) => {
         <template #header>Ventas</template>
 
         <div class="container mt-5" id="saleInfo">
+            <div class="alert alert-success" v-if="message">
+                {{ message }}
+            </div>
+            <div class="alert alert-danger" v-if="error">
+                {{ error }}
+            </div>
+
             <div class="row">
                 <div class="col">
                     <div class="form-floating">
