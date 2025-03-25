@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('reference', 20)->index();
             $table->string('type', 10)->index();
             $table->string('payment', 10);
-            $table->dateTime('uploaded')->index();
+            $table->dateTime('uploaded')->index()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

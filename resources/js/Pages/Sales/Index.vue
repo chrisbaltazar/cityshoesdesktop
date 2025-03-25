@@ -18,7 +18,8 @@ const salesman = ref('');
 const data = ref({
     product: '',
     size: '',
-    price: ''
+    price: '',
+    quantity: ''
 });
 
 const details = ref([]);
@@ -57,9 +58,9 @@ const submit = (type) => {
     });
 
     form.post(route('sales.store'), {
-        onSuccess: (msg) => {
+        onSuccess: () => {
             clear(true)
-            message.value = msg;
+            message.value = 'Venta guardada...';
         },
         onError: (err) => {
             console.log(err);
@@ -112,6 +113,13 @@ const submit = (type) => {
                         <input type="number" step="1" class="form-control" v-model="data.price" id="txtPrice"
                                placeholder="Precio">
                         <label for="txtPrice">Precio</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating">
+                        <input type="number" step="1" class="form-control" v-model="data.quantity" id="txtQuantity"
+                               placeholder="Cantidad">
+                        <label for="txtPrice">Cantidad</label>
                     </div>
                 </div>
                 <div class="col max-w-[50px]">

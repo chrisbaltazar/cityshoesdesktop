@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Enums\Payments;
+use App\Models\Product;
 use App\Models\Sale;
 use App\Models\SaleDetail;
 use App\Services\Traits\ValidateValue;
@@ -21,7 +22,8 @@ class SalesManagerService
 
         $sale = Sale::create([
             'store_id' => 1, // TODO change to auth store
-            'staff_id' => $data['staff_id'],
+            'staff_id' => 1, // TODO load salesman
+            'type' => $data['type'],
             'payment' => $data['payment'] ?? self::DEFAULT_PAYMENT->value,
             'reference' => $this->generateReference(),
         ]);
@@ -45,9 +47,12 @@ class SalesManagerService
     private function collectSaleDetails(array $details): Collection
     {
         return collect($details)->map(function ($detail) {
-            if (!$this->validateNumber($detail['product_id'], $detail['quantity'], $detail['price'])) {
+            if (!$this->validateNumber($detail['quantity'], $detail['price'])) {
                 throw new \InvalidArgumentException('Datos inválidos en venta');
             }
+
+            // TODO remove once the data migration is done
+            $detail['product_id'] = Product::where('name', $detail['product'])->firstOrFail()->id;
 
             return new SaleDetail($detail);
         });

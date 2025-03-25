@@ -23,6 +23,6 @@ class SalesController extends Controller
             return back()->withErrors('Error al registrar la venta: ' . $t->getMessage());
         }
 
-        return back()->with('Venta guardada correctamente');
+        return back()->with(['message' => 'Venta guardada correctamente']);
     }
 }
