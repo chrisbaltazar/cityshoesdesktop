@@ -20,19 +20,35 @@ const columns = [
         <template #header>Reporte</template>
 
         <div class="p-6 text-gray-900">
-            <DataTable
-                :data="sales"
-                :columns="columns"
-                class="table table-striped table-hover"
-            >
-                <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Nombre</th>
-                    <th>Total</th>
-                </tr>
-                </thead>
-            </DataTable>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 mx-auto">
+                        <DataTable
+                            :data="sales"
+                            :columns="columns"
+                            class="table table-striped table-hover"
+                        >
+                            <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Nombre</th>
+                                <th>Total</th>
+                                <th>Ver</th>
+                            </tr>
+                            </thead>
+                            <template #column-3="props">
+                                <button class="btn btn-info btn-sm">
+                                    <i class="fa fa-arrow-right"></i>
+                                </button>
+                            </template>
+                        </DataTable>
+                    </div>
+                    <div class="col-8 col-md-6 mx-auto">
+
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </AuthenticatedLayout>
