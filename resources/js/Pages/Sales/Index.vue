@@ -20,9 +20,10 @@ const data = ref({
     price: '',
     quantity: ''
 });
+
 const details = ref([]);
-const error = ref(null)
 const form = useForm({})
+
 const bannerMessage = computed(() => {
     if(form.recentlySuccessful) {
         return 'Venta guardada...';
@@ -79,8 +80,6 @@ const submit = (type) => {
         },
         onError: (err) => {
             console.log(err);
-            // error.value = 'Error: ' + err[0]
-            // form.setError('message', err[0])
         }
     })
 }
