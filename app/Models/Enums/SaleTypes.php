@@ -2,11 +2,11 @@
 
 namespace App\Models\Enums;
 
-use App\Models\Traits\GetValues;
+use App\Models\Traits\EnumValues;
 
 enum SaleTypes : string
 {
-    use GetValues;
+    use EnumValues;
 
     case SIMPLE = 'simple';
     case FISCAL = 'fiscal';

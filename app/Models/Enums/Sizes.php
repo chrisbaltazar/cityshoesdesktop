@@ -2,11 +2,11 @@
 
 namespace App\Models\Enums;
 
-use App\Models\Traits\GetValues;
+use App\Models\Traits\EnumValues;
 
 enum Sizes :string
 {
-    use GetValues;
+    use EnumValues;
 
     case XS = '12-14';
     case SM = '15-17';

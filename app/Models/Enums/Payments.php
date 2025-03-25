@@ -2,11 +2,11 @@
 
 namespace App\Models\Enums;
 
-use App\Models\Traits\GetValues;
+use App\Models\Traits\EnumValues;
 
 enum Payments : string
 {
-    use GetValues;
+    use EnumValues;
 
     case CASH = 'cash';
     case CARD = 'card';
