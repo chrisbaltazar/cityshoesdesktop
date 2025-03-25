@@ -2,7 +2,7 @@
 
 namespace App\Models\Traits;
 
-trait Money
+trait Formatter
 {
 
     protected function asMoney(mixed $value, int $decimals = 2): string

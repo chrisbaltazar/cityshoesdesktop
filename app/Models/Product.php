@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Money;
+use App\Models\Traits\Formatter;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
-    use HasFactory, Money;
+    use HasFactory, Formatter;
 
     protected function price(): Attribute
     {
