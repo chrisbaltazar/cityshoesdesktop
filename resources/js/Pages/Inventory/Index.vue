@@ -19,21 +19,26 @@ const columns = [
     <AuthenticatedLayout>
         <template #header>Inventario</template>
 
-        <div class="p-6 text-gray-900">
-            <DataTable
-                :data="products"
-                :columns="columns"
-                class="table table-striped table-hover"
-            >
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Size</th>
-                    <th>Price</th>
-                </tr>
-                </thead>
-            </DataTable>
+        <div class="container">
+            <div class="p-6 text-gray-900">
+                <div class="row">
+                    <div class="col">
+                        <DataTable
+                            :data="products"
+                            :columns="columns"
+                            class="table table-striped table-hover"
+                        >
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Size</th>
+                                <th>Price</th>
+                            </tr>
+                            </thead>
+                        </DataTable>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </AuthenticatedLayout>
 </template>

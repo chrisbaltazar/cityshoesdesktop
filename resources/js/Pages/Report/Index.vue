@@ -20,7 +20,7 @@ const columns = [
         <template #header>Reporte</template>
 
         <div class="p-6 text-gray-900">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-6 mx-auto">
                         <DataTable
@@ -43,8 +43,27 @@ const columns = [
                             </template>
                         </DataTable>
                     </div>
-                    <div class="col-8 col-md-6 mx-auto">
+                    <div class="col-8 col-md-6 mx-auto mt-5">
+                        <div class="card border-warning shadow-2xl">
+                            <div class="card-header">
+                                <h5>Detalles de la venta</h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Talla</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
