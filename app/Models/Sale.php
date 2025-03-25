@@ -36,7 +36,7 @@ class Sale extends Model
     protected function total(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $this->asMoney($this->details()->sum('total')),
+            get: fn($value) => $this->asMoney($this->details->sum('total')),
         );
     }
 
