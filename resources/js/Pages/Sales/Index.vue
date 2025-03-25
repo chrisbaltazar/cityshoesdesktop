@@ -14,15 +14,33 @@ const columns = [
 ];
 
 const salesman = ref('');
-
 const data = ref({
     product: '',
     size: '',
     price: '',
     quantity: ''
 });
-
 const details = ref([]);
+const error = ref(null)
+const form = useForm({})
+const bannerMessage = computed(() => {
+    if(form.recentlySuccessful) {
+        return 'Venta guardada...';
+    }
+    if(error.value) {
+        return error.value;
+    }
+    return null;
+})
+const bannerClass = computed(() => {
+    if (form.recentlySuccessful) {
+        return 'alert alert-success';
+    }
+    if (error.value) {
+        return 'alert alert-danger';
+    }
+    return '';
+})
 
 const hasDetails = computed(() => {
     return details.value.length > 0;
@@ -41,32 +59,30 @@ const addDetail = () => {
 
 const clear = (reset = false) => {
     data.value = {}
+    error.value = null
     if (reset) {
         salesman.value = '';
         details.value = [];
     }
 }
 
-const error = ref(null)
-const message = ref(null)
-
 const submit = (type) => {
-    const form = useForm({
-        type: type,
-        salesman: salesman.value,
-        details: details.value
-    });
-
-    form.post(route('sales.store'), {
+    error.value = null
+    form.transform(() => {
+        return {
+            type: type,
+            salesman: salesman.value,
+            details: details.value
+        }
+    }).post(route('sales.store'), {
         onSuccess: () => {
             clear(true)
-            message.value = 'Venta guardada...';
         },
         onError: (err) => {
             console.log(err);
-            error.value = 'Error: ' + err[0];
+            error.value = 'Error: ' + err[0]
         }
-    });
+    })
 }
 
 </script>
@@ -78,11 +94,8 @@ const submit = (type) => {
         <template #header>Ventas</template>
 
         <div class="container mt-5" id="saleInfo">
-            <div class="alert alert-success" v-if="message">
-                {{ message }}
-            </div>
-            <div class="alert alert-danger" v-if="error">
-                {{ error }}
+            <div :class="bannerClass" v-if="bannerMessage">
+                {{ bannerMessage }}
             </div>
 
             <div class="row">
