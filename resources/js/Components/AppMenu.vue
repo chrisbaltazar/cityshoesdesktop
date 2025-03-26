@@ -12,7 +12,7 @@ import NavLink from "@/Components/NavLink.vue";
     <NavLink :href="route('inventory.index')" :active="route().current('inventory.index')">
         Inventario
     </NavLink>
-    <NavLink :href="route('report.index')" :active="route().current('report.index')">
+    <NavLink :href="route('report.show')" :active="route().current('report.index')">
         Reporte
     </NavLink>
 </template>

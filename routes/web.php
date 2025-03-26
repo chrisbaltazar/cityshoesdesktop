@@ -37,8 +37,7 @@ Route::middleware(Authenticate::class)->group(function () {
     });
 
     Route::controller(ReportController::class)->group(function(){
-        Route::get('/report', 'index')->name('report.index');
-        Route::get('/report/{id}', 'show')->name('report.show');
+        Route::get('/report/{sale?}', 'show')->name('report.show');
     });
 });
 

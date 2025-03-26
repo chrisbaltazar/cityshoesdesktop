@@ -1,9 +1,10 @@
 <script setup>
-import {Head} from '@inertiajs/vue3';
+import {Head, router} from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 defineProps([
     'sales',
+    'details',
 ])
 
 const columns = [
@@ -11,6 +12,14 @@ const columns = [
     {data: 'salesman.name'},
     {data: 'total'},
 ];
+
+
+const view = (data) => {
+    router.get(route('report.show', data.id), {}, {
+        only: ['details']
+    });
+}
+
 </script>
 
 <template>
@@ -37,7 +46,7 @@ const columns = [
                             </tr>
                             </thead>
                             <template #column-3="props">
-                                <button class="btn btn-info btn-sm">
+                                <button class="btn btn-info btn-sm" @click="view(props.rowData)">
                                     <i class="fa fa-arrow-right"></i>
                                 </button>
                             </template>
@@ -59,7 +68,12 @@ const columns = [
                                     </tr>
                                     </thead>
                                     <tbody>
-
+                                    <tr v-for="row in details" :key="row.id">
+                                        <td>{{ row.product_id }}</td>
+                                        <td>{{ row.size }}</td>
+                                        <td>{{ row.price }}</td>
+                                        <td>{{ row.quantity }}</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
