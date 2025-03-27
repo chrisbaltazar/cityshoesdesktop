@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Formatter;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class SaleDetail extends Model
 {
-    use HasFactory;
+    use HasFactory, Formatter;
 
     protected $guarded = ['id'];
 
@@ -26,10 +27,17 @@ class SaleDetail extends Model
         return $this->belongsTo(Product::class, 'product_id');
     }
 
+    protected function price(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $this->asMoney($value),
+        );
+    }
+
     protected function total(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => ($this->price * $this->quantity),
+            get: fn($value) => ($this->attributes['price'] * $this->quantity),
         );
     }
 }

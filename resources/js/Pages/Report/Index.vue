@@ -28,10 +28,10 @@ const view = (data) => {
     <AuthenticatedLayout>
         <template #header>Reporte</template>
 
-        <div class="p-6 text-gray-900">
-            <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="p-6 text-gray-900">
                 <div class="row">
-                    <div class="col-12 col-md-6 mx-auto">
+                    <div class="col-12 col-md-6 mx-auto pr-5">
                         <DataTable
                             :data="sales"
                             :columns="columns"
@@ -52,7 +52,7 @@ const view = (data) => {
                             </template>
                         </DataTable>
                     </div>
-                    <div class="col-8 col-md-6 mx-auto mt-5">
+                    <div class="col-8 col-md-6 mx-auto mt-5 pl-5">
                         <div class="card border-warning shadow-2xl">
                             <div class="card-header">
                                 <h5>Detalles de la venta</h5>
@@ -69,8 +69,8 @@ const view = (data) => {
                                     </thead>
                                     <tbody>
                                     <tr v-for="row in details" :key="row.id">
-                                        <td>{{ row.product_id }}</td>
-                                        <td>{{ row.size }}</td>
+                                        <td>{{ row.product.name }}</td>
+                                        <td>{{ row.product.size }}</td>
                                         <td>{{ row.price }}</td>
                                         <td>{{ row.quantity }}</td>
                                     </tr>
