@@ -13,7 +13,6 @@ const columns = [
     {data: 'total'},
 ];
 
-
 const view = (data) => {
     router.get(route('report.show', data.id), {}, {
         only: ['details']

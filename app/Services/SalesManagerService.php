@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Enums\Payments;
+use App\Models\Enums\SaleTypes;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\SaleDetail;
@@ -14,7 +15,6 @@ class SalesManagerService
 
     use ValidateValue;
 
-    const DEFAULT_PAYMENT = Payments::CASH;
 
     public function create(array $data): Sale
     {
@@ -23,8 +23,8 @@ class SalesManagerService
         $sale = Sale::create([
             'store_id' => 1, // TODO change to auth store
             'staff_id' => 1, // TODO load salesman
-            'type' => $data['type'],
-            'payment' => $data['payment'] ?? self::DEFAULT_PAYMENT->value,
+            'type' => $this->getSaleType($data['type']),
+            'payment' => $this->getPaymentType($data['type']),
             'reference' => $this->generateReference(),
         ]);
 
@@ -56,5 +56,19 @@ class SalesManagerService
 
             return new SaleDetail($detail);
         });
+    }
+
+    public function getPaymentType(string $type): string
+    {
+        return Payments::tryFrom($type)->value ?? Payments::CASH->value;
+    }
+
+    public function getSaleType(string $type): string
+    {
+        if($type === Payments::CARD->value){
+            return SaleTypes::SIMPLE->value;
+        }
+
+        return SaleTypes::from($type)->value;
     }
 }

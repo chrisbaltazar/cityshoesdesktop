@@ -58,19 +58,19 @@ const addDetail = () => {
 
 const clear = (reset = false) => {
     data.value = {}
-    error.value = null
     if (reset) {
         salesman.value = '';
         details.value = [];
     }
 }
 
-const submit = (type) => {
+const submit = (type, payment = null) => {
     form.clearErrors();
 
     form.transform(() => {
         return {
-            type: type,
+            type,
+            payment,
             salesman: salesman.value,
             details: details.value
         }
@@ -179,7 +179,7 @@ const submit = (type) => {
                         @click="clear(true)">Cancelar
                 </button>
                 <button type="button" :disabled="!hasDetails" class="btn btn-info my-1 mx-1"
-                        @click="submit('card')">Tarjeta
+                        @click="submit('simple', 'card')">Tarjeta
                 </button>
                 <button type="button" :disabled="!hasDetails" class="btn btn-success my-1 mx-1"
                         @click="submit('simple')">Venta Simple
