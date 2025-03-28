@@ -14,9 +14,11 @@ const columns = [
 ];
 
 const select = (e, dt, type, indexes) => {
-    console.log('select', e, dt, type, indexes);
-    const data = dt.rows(indexes).data().shift();
+    if(type !== 'row'){
+        return
+    }
 
+    const data = dt.rows(indexes).data().shift();
     router.get(route('report.show', data.id), {}, {
         preserveState: true,
         only: ['details']
