@@ -2,23 +2,21 @@
 
 namespace Tests\Feature;
 
-use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Feature\Traits\UserMock;
 use Tests\TestCase;
 
-class InventoryControllerTest extends TestCase
+class SalesControllerTest extends TestCase
 {
 
     use RefreshDatabase, UserMock;
 
     public function test_index(): void
     {
-        Product::factory()->count(10)->create();
-
-        $response = $this->getAuthMock()->get('/inventory');
+        $response = $this->getAuthMock()->get('/sales');
 
         $response->assertOk();
-        $response->assertInertia(fn ($page) => $page->has('products', 10));
+        $response->assertInertia(fn ($page) => $page->has('sizes'));
     }
 }
