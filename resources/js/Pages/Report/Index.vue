@@ -1,6 +1,7 @@
 <script setup>
 import {Head, router} from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import {ref} from "vue";
 
 defineProps([
     'sales',
@@ -13,13 +14,15 @@ const columns = [
     {data: 'total', title: 'Total'},
 ];
 
+const selected = ref()
+
 const select = (e, dt, type, indexes) => {
     if(type !== 'row'){
         return
     }
 
-    const data = dt.rows(indexes).data().shift();
-    router.get(route('report.show', data.id), {}, {
+    selected.value = dt.rows(indexes).data().shift()
+    router.get(route('report.show', selected.value.id), {}, {
         preserveState: true,
         only: ['details']
     });
@@ -72,6 +75,17 @@ const select = (e, dt, type, indexes) => {
                                     </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="card-footer text-right">
+                                <span class="badge bg-warning text-dark fs-6 ml-2">
+                                    {{selected?.total}}
+                                </span>
+                                <span class="badge bg-primary text-white fs-6 ml-2">
+                                    {{selected?.type}}
+                                </span>
+                                <span class="badge bg-dark text-white fs-6 ml-2">
+                                    {{selected?.payment}}
+                                </span>
                             </div>
                         </div>
                     </div>
