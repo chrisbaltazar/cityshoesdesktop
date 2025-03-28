@@ -1,5 +1,6 @@
 @import 'bootstrap';
 @import 'datatables.net-bs5';
+@import 'datatables.net-select-dt';
 @import 'font-awesome';
 @tailwind base;
 @tailwind components;

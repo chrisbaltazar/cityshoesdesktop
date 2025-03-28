@@ -8,16 +8,21 @@ defineProps([
 ])
 
 const columns = [
-    {data: 'date'},
-    {data: 'salesman.name'},
-    {data: 'total'},
+    {data: 'date', title: 'Fecha'},
+    {data: 'salesman.name', title: 'Nombre'},
+    {data: 'total', title: 'Total'},
 ];
 
-const view = (data) => {
+const select = (e, dt, type, indexes) => {
+    console.log('select', e, dt, type, indexes);
+    const data = dt.rows(indexes).data().shift();
+
     router.get(route('report.show', data.id), {}, {
+        preserveState: true,
         only: ['details']
     });
 }
+
 
 </script>
 
@@ -32,23 +37,13 @@ const view = (data) => {
                 <div class="row">
                     <div class="col-12 col-md-6 mx-auto pr-5">
                         <DataTable
+                            ref="table"
                             :data="sales"
                             :columns="columns"
+                            :options="{ select: 'single' }"
+                            @select="select"
                             class="table table-striped table-hover"
                         >
-                            <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Nombre</th>
-                                <th>Total</th>
-                                <th>Ver</th>
-                            </tr>
-                            </thead>
-                            <template #column-3="props">
-                                <button class="btn btn-info btn-sm" @click="view(props.rowData)">
-                                    <i class="fa fa-arrow-right"></i>
-                                </button>
-                            </template>
                         </DataTable>
                     </div>
                     <div class="col-8 col-md-6 mx-auto mt-5 pl-5">

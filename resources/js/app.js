@@ -7,6 +7,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import DataTablesLib from 'datatables.net-bs5';
 import DataTable from 'datatables.net-vue3';
+import 'datatables.net-select-dt';
 
 DataTable.use(DataTablesLib);
 
