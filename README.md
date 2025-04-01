@@ -8,9 +8,9 @@ _Work in progress_ 😉
 
 ## Tech Stack
 
-**Client:** Inertia, Vue3, BootstrapCSS, TailwindCSS
+**Frontend:** Inertia, Vue3, BootstrapCSS, TailwindCSS
 
-**Server:** PHP8.1, Laravel 10
+**Backend:** PHP8.1, Laravel 10
 
 
 ## Screenshots
@@ -46,6 +46,18 @@ Install dependencies
   npm install
 ```
 
+Copy the `.env.example` file to `.env` and set your database credentials
+
+```bash
+  cp .env.example .env
+```
+
+Setup the database
+
+```bash
+  php artisan migrate --seed
+```
+
 Start the server
 
 ```bash
@@ -54,6 +66,11 @@ Start the server
 
 ```bash
   php artisan serve
+```
+
+Visit the given local url and login using the default user created from: 
+```
+Database\Factories\UserFactory::default()
 ```
 
 ## Running Tests
