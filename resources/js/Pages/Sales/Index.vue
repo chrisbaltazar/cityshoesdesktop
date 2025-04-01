@@ -46,7 +46,7 @@ const hasDetails = computed(() => {
 });
 
 const total = computed(() => {
-    return 'Total $' + details.value.map(row => row.price).reduce((a, b) => a + b, 0);
+    return 'Total $' + details.value.map(row => row.price * row.quantity).reduce((a, b) => a + b, 0);
 });
 
 const addDetail = () => {
@@ -147,9 +147,10 @@ const submit = (type, payment = null) => {
                 <thead>
                 <tr>
                     <th>Producto</th>
-                    <th>Talla</th>
-                    <th>Precio</th>
-                    <th>Borrar</th>
+                    <th width="100">Talla</th>
+                    <th width="100">Precio</th>
+                    <th width="100">Cantidad</th>
+                    <th width="100">Borrar</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -157,6 +158,7 @@ const submit = (type, payment = null) => {
                     <td>{{ detail.product }}</td>
                     <td>{{ detail.size }}</td>
                     <td>{{ detail.price }}</td>
+                    <td>{{ detail.quantity }}</td>
                     <td>
                         <button type="button" class="btn btn-sm btn-danger" @click="details.splice(index, 1)">
                             <i class="fa fa-trash"></i>
