@@ -10,7 +10,7 @@ _Work in progress_ 😉
 
 **Client:** Inertia, Vue3, BootstrapCSS, TailwindCSS
 
-**Server:** PHP, Laravel 10
+**Server:** PHP8.1, Laravel 10
 
 
 ## Screenshots
