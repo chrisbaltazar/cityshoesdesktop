@@ -19,7 +19,7 @@ class PrinterController extends Controller
         ];
 
         return Inertia::render('Printer/Test', [
-                'printers' => $devPrinters
+                'printers' => $systemPrinters
             ]
         );
     }
@@ -29,7 +29,7 @@ class PrinterController extends Controller
         $printer = collect(System::printers())->firstWhere('displayName', $printerName);
 
         if(!$printer) {
-//            throw new \Exception('Printer not found');
+            throw new \Exception('Printer not found');
         }
 
         System::print(view('printer.test')->render(), $printer);
