@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SalesController;
@@ -42,5 +43,7 @@ Route::middleware(Authenticate::class)->group(function () {
 });
 
 Route::redirect('/', '/dashboard');
+
+Route::get('/printer', [PrinterController::class, 'test'])->name('printer.test');
 
 require 'auth.php';

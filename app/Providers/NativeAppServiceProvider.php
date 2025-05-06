@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Artisan;
 use Native\Laravel\Facades\Window;
 use Native\Laravel\Contracts\ProvidesPhpIni;
 
@@ -13,7 +14,7 @@ class NativeAppServiceProvider implements ProvidesPhpIni
      */
     public function boot(): void
     {
-        Window::open()->width(1000)->height(600)->showDevTools(false);
+        Window::open()->showDevTools(false)->maximized();
     }
 
     /**
