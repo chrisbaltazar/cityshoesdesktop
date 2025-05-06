@@ -15,7 +15,6 @@ class SalesManagerService
 
     use ValidateValue;
 
-
     public function create(array $data): Sale
     {
         $details = $this->collectSaleDetails($data['details']);
