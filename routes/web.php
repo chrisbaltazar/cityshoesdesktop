@@ -45,5 +45,6 @@ Route::middleware(Authenticate::class)->group(function () {
 Route::redirect('/', '/dashboard');
 
 Route::get('/printer', [PrinterController::class, 'test'])->name('printer.test');
+Route::get('/printer/{printerName}', [PrinterController::class, 'print'])->name('printer.print');
 
 require 'auth.php';
